@@ -1,6 +1,8 @@
-<?php 
+<?php
 
-class FirstCest
+use \Codeception\Step\Argument\PasswordArgument;
+
+class LoginCest
 {
     public function _before(AcceptanceTester $I)
     {
@@ -14,11 +16,17 @@ class FirstCest
         $I->amGoingTo('Login as admin');
 
         $I->fillField('name', 'admin');
-        $I->fillField('pass', 'admin');
+        $I->fillField('pass', new PasswordArgument('admin'));
         //$I->click('Log in');
         $I->click('#edit-submit');
 
         $I->canSee('admin');
+    }
+
+    public function _after(AcceptanceTester $I)
+    {
+        $I->amGoingTo('Logout');
+        $I->click('//a[@data-drupal-link-system-path="user/logout"]');
     }
 
 }
