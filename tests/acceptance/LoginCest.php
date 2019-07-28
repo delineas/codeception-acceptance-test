@@ -1,11 +1,16 @@
 <?php
 
 use \Codeception\Step\Argument\PasswordArgument;
+use Faker\Factory;
 
 class LoginCest
 {
     public function _before(AcceptanceTester $I)
     {
+        $faker = Factory::create();
+        $sentence = $faker->sentence($nbWords = 6);
+        var_dump($sentence);
+        exit();
     }
 
     public function loginAsAdmin(AcceptanceTester $I)
