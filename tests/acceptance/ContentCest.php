@@ -1,12 +1,19 @@
 <?php
 
 use \Codeception\Step\Argument\PasswordArgument;
+use Faker\Factory;
 
 class ContentCest
 {
 
+    protected $title;
+
     public function _before(AcceptanceTester $I)
     {
+
+        $faker = Factory::create();
+        $this->title = $faker->sentence(5);
+
         $I->amOnPage('/user/login');
         $I->see('Iniciar sesión');
         $I->amGoingTo('Login as admin');
@@ -25,9 +32,9 @@ class ContentCest
         $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
 
         $I->amGoingTo('Fill page content');
-        $I->fillField('title[0][value]', 'Este es mi título');
+        $I->fillField('title[0][value]', $this->title);
         $I->click('#edit-submit');
-        $I->canSee('Este es mi título', 'h1');
+        $I->canSee($this->title, 'h1');
 
     }
 
