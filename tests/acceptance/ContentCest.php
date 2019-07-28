@@ -28,11 +28,14 @@ class ContentCest
         $I->fillField('title[0][value]', 'Este es mi título');
         $I->click('#edit-submit');
         $I->canSee('Este es mi título', 'h1');
-        
+
     }
 
     public function _after(AcceptanceTester $I)
     {
+        $I->amGoingTo('Remove content');
+        $I->click('Eliminar', '//*[@id="block-bartik-local-tasks"]/nav/ul/li[3]/a');
+        $I->click('#edit-submit');
         $I->amGoingTo('Logout');
         $I->click('//a[@href="/user/logout"]');
     }
