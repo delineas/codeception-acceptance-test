@@ -1,5 +1,6 @@
 <?php
 
+use \Codeception\Step\Argument\PasswordArgument;
 
 /**
  * Inherited Methods
@@ -23,4 +24,16 @@ class AcceptanceTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+
+    public function login($name, $pass)
+    {
+        $I = new AcceptanceTester($this->getScenario());
+        $I->amOnPage('/user/login');
+        $I->see('Iniciar sesión');
+        $I->amGoingTo('Login as admin');
+        $I->fillField('name', $name);
+        $I->fillField('pass', new PasswordArgument($pass));
+        $I->click('#edit-submit');
+        $I->canSee('admin');
+    }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use \Codeception\Step\Argument\PasswordArgument;
 use Faker\Factory;
 
 class ContentCest
@@ -14,13 +13,7 @@ class ContentCest
         $faker = Factory::create();
         $this->title = $faker->sentence(5);
 
-        $I->amOnPage('/user/login');
-        $I->see('Iniciar sesión');
-        $I->amGoingTo('Login as admin');
-        $I->fillField('name', 'admin');
-        $I->fillField('pass', new PasswordArgument('admin'));
-        $I->click('#edit-submit');
-        $I->canSee('admin');
+        $I->login('admin', 'admin');
 
     }
 
