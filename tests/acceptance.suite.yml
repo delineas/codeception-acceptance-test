@@ -8,6 +8,6 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: 'http://msfd8:msfd8password2019@msfd8.laptop'
+            url: 'http://drupaltest.test'
         - \Helper\Acceptance
     step_decorators: ~        

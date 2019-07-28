@@ -6,26 +6,19 @@ class FirstCest
     {
     }
 
-    // tests
-    public function tryToTest(AcceptanceTester $I)
-    {
-    }
-
-    public function frontpageWorks(AcceptanceTester $I)
+    public function loginAsAdmin(AcceptanceTester $I)
     {
         $I->amOnPage('/user/login');
-        $I->see('Log in');
+        $I->see('Iniciar sesión');
 
-        $I->submitForm('#user-login-form', array('user' => array(
-            'name' => 'admin',
-            'password' => 'admin'
-        )), 'submitButton');
+        $I->amGoingTo('Login as admin');
 
         $I->fillField('name', 'admin');
         $I->fillField('pass', 'admin');
-        $I->click('Log in');
+        //$I->click('Log in');
+        $I->click('#edit-submit');
 
-        $I->canSeeCurrentUrlEquals('/user/1');
+        $I->canSee('admin');
     }
 
 }
